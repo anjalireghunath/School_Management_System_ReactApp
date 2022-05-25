@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Header from './Header'
 
 const SearchFaculty = () => {
-    var [name,setName]=useState("")
+    var [fname,setFname]=useState("")
     const searchFacul=()=>{
         const data={"name":name}
         console.log(data)
@@ -16,7 +16,7 @@ const SearchFaculty = () => {
             <div className="row g-3">
                 <div className="col col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <label for="" className="form-label">Name</label>
-                    <input onChange={(c)=>{setName(c.target.value)}} type="text" className="form-control"/>
+                    <input onChange={(c)=>{setFname(c.target.value)}} type="text" className="form-control"/>
                 </div>
                
                 <div className="col col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
