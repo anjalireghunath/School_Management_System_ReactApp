@@ -8,6 +8,7 @@ import AddFaculty from './components/AddFaculty';
 import SearchFaculty from './components/SearchFaculty';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ViewStudent from './components/ViewStudent';
+import ViewFaculty from './components/ViewFaculty';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
   <Route path='/sstud' exact element={<SearchStudent/>}/>
   <Route path='/sfac' exact element={<SearchFaculty/>}/>
   <Route path='/vstud' exact element={<ViewStudent/>}/>
+  <Route path='/vfac' exact element={<ViewFaculty/>}/>
 </Routes>
 </BrowserRouter>
 
