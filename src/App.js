@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AddStudent from './components/AddStudent';
 import SearchStudent from './components/SearchStudent';
 import AddFaculty from './components/AddFaculty';
+import SearchFaculty from './components/SearchFaculty';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 <AddStudent/>
 <SearchStudent/>
 <AddFaculty/>
+<SearchFaculty/>
 
    </div>
   );
