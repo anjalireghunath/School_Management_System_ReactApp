@@ -1,34 +1,30 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import Header from './Header'
 
 const ViewFaculty = () => {
-    var viewfaculty=[
-        {
-            "name":"Anju",
-            "education":"MCA",
-            "mobile":"7654567698",
-            "address":"keazhadethu",
-            "pincode":"689691",
-            "district":"pathanamthitta"
-        },
-        {
-            "name":"malu",
-            "education":"MCA",
-            "mobile":"7654567697",
-            "address":"abc",
-            "pincode":"689691",
-            "district":"kollam"
-        },
-        {
-            "name":"devu",
-            "education":"MBA",
-            "mobile":"7654567654",
-            "address":"tyuh",
-            "pincode":"689691",
-            "district":"tvm"
-        }
+    var [viewfaculty,setViewfaculty]=useState([])
+    var [loadstatus,setLoadstatus]=useState(true)
+    axios.get("http://localhost:4008/api/facultiesview").then((response)=>{
+      console.log(response.data)
+      setViewfaculty(response.data)
+      setLoadstatus(false)
+    })
 
-    ]
+    const deleteData=(id)=>{
+      const data={"_id":id}
+      console.log(data)
+      axios.post("http://localhost:4008/api/facdelete",data).then((response)=>{
+          if(response.data.status=="success")
+          {
+              alert("successfully deleted")
+          }
+          else{
+              alert("failed to delete")
+          }
+      })
+  }
+
   return (
     <div>
 <Header/>
@@ -37,7 +33,10 @@ const ViewFaculty = () => {
             <div className='col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12'>
             <div className='row g-3'>
                 <div className='col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12'>
-                <table class="table table-primary table-striped">
+
+                  {loadstatus ? <div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div> : <table class="table table-primary table-striped">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -46,17 +45,19 @@ const ViewFaculty = () => {
       <th scope="col">Address</th>
       <th scope="col">Pincode</th>
       <th scope="col">District</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     {viewfaculty.map((value,key)=>{
       return <tr>
-      <td>{value.name}</td>
+      <td>{value.fname}</td>
       <td>{value.education}</td>
-      <td>{value.mobile}</td>
-      <td>{value.address}</td>
+      <td>{value.fmobile}</td>
+      <td>{value.faddress}</td>
       <td>{value.pincode}</td>
       <td>{value.district}</td>
+      <button className='btn btn-danger' onClick={()=>{deleteData(value._id)}}>DELETE</button>
     </tr>
     })}
     
@@ -64,6 +65,8 @@ const ViewFaculty = () => {
     
   </tbody>
 </table>
+}
+                
 
 
 

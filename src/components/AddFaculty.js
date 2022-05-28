@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import Header from './Header'
 
@@ -9,8 +10,19 @@ const AddFaculty = () => {
     var [pincode,setPincode]=useState("")
     var [district,setDistrict]=useState("")
     const facultyData=()=>{
-        const data={"fname":fname,"education":education,"mobile":fmobile,"address":faddress,"pincode":pincode,"district":district}
+        const data={"fname":fname,"education":education,"fmobile":fmobile,"faddress":faddress,"pincode":pincode,"district":district}
         console.log(data)
+        axios.post("http://localhost:4008/api/addfaculty",data).then((response)=>{
+            if(response.data.status=="success")
+            {
+                alert("successfully added")
+            }
+            else
+            {
+                alert("failed to add")
+            }
+            
+        })
     }
   return (
     <div>
